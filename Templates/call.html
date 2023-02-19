@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ 'Edit Call' if call.id else 'New Call' }}</h1>
+  <form method="post">
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" class="form-control" id="date" name="date" value="{{ call.date }}">
+    </div>
+    <div class="form-group">
+      <label for="time">Time</label>
+      <input type="time" class="form-control" id="time" name="time" value="{{ call.time }}">
+    </div>
+    <div class="form-group">
+      <label for="customer_name">Customer Name</label>
+      <input type="text" class="form-control" id="customer_name" name="customer_name" value="{{ call.customer_name }}">
+    <div class="form-group">
+      <label for="phone_number">Phone Number</label>
+      <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ call.phone_number }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Community</label>
+      <input type="text" class="form-control" id="community" name="community" value="{{ call.community }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Area</label>
+      <input type="text" class="form-control" id="area" name="area" value="{{ call.area }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Address</label>
+      <input type="text" class="form-control" id="address" name="address" value="{{ call.address }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Customer Type</label>
+      <input type="text" class="form-control" id="customer_type" name="customer_type" value="{{ call.customer_type }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Call Type</label>
+      <input type="text" class="form-control" id="call_type" name="call_type" value="{{ call.call_type }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Comments</label>
+      <input type="text" class="form-control" id="comments" name="comments" value="{{ call.comments }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Received Type</label>
+      <input type="text" class="form-control" id="received_type" name="received_type" value="{{ call.received_type }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Response</label>
+      <input type="text" class="form-control" id="response" name="response" value="{{ call.response }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Card</label>
+      <input type="text" class="form-control" id="card" name="card" value="{{ call.card }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Database</label>
+      <input type="text" class="form-control" id="database" name="database" value="{{ call.database }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Resolved</label>
+      <input type="text" class="form-control" id="resolved" name="resolved" value="{{ call.resolved }}">
+    </div>
+    <div class="form-group">
+      <label for="phone_number">Booked</label>
+      <input type="text" class="form-control" id="booked" name="booked" value="{{ call.booked }}">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+{% endblock %}
