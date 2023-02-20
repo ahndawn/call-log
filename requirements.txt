@@ -4,7 +4,7 @@ click==8.1.3
 Flask==2.2.3
 Flask-DebugToolbar==0.13.1
 Flask-SQLAlchemy==3.0.3
-flask_wtf==2.1.2
+Flask-WTF==1.1.1
 gunicorn==20.1.0
 greenlet==2.0.2
 itsdangerous==2.1.2
