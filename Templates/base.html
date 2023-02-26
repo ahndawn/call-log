@@ -5,8 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="static/app.css">
-    <title>{% block title %}{% endblock title %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap" rel="stylesheet">
+    
+    <script>
+      function confirmDelete() {
+          return confirm("Are you sure you want to delete this call?");
+      }
+      </script>
+
+  <title>{% block title %}{% endblock title %}</title>
 </head>
+
 <body>
     <nav class="navbar">
         <a class="navbar-brand"><img src="{{ url_for('static', filename='assets/images/Worker Man.png') }}" alt="MWC Logo" style="width: 30px;height: 50px;"></a>

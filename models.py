@@ -21,7 +21,6 @@ class Call(db.Model):
     card = db.Column(db.String(3), nullable=True, default=False)
     database = db.Column(db.String(3), nullable=True, default=False)
     resolved = db.Column(db.String(3), nullable=True, default=False)
-    booked = db.Column(db.String(3), nullable=True, default=False)
 
     # @classmethod
     # def get_checkbox_value(cls, checkbox_input_value):

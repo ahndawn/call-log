@@ -8,16 +8,29 @@ class CallForm(FlaskForm):
     time = TimeField("Time", validators=[DataRequired()])
     customer_name = StringField("Customer Name", validators=[DataRequired()])
     phone_number = StringField("Phone Number", validators=[DataRequired()])
-    community = StringField("Community", validators=[DataRequired()])
-    area = StringField("Area", validators=[DataRequired()])
+    community = SelectField("Community", validators=[DataRequired()])
+    area = SelectField("Area", choices=[('north'), ('northwest'), ('northeast'), ('central-west'), ('central'), ('central-east'), ('southeast'), ('south'), ('southwest'), ('ocean')], validators=[DataRequired()])
     address = StringField("Address", validators=[DataRequired()])
     customer_type = SelectField("Customer Type", choices=[('existing'),('new')], validators=[DataRequired()])
     call_type = SelectField("Call Type", choices=[('schedule'),('complaint'), ('payment'), ('estimate')], validators=[DataRequired()])
     comments = StringField("Comments")
     received_type = SelectField("Received Type", choices=[('msg'), ('call'), ('rollover')],validators=[DataRequired()])
-    response = StringField("Response")
-    card = StringField("Card")
-    database = StringField("Database")
-    resolved = StringField("Resolved")
-    booked = StringField("Booked")
+    response = SelectField("Response", choices=[('yes'), ('no')])
+    card = SelectField("Card", choices=[('yes'), ('no')])
+    database = SelectField("Database", choices=[('yes'), ('no')])
+    resolved = SelectField("Resolved", choices=[('yes'), ('no')])
+
+class PhoneSearchForm(FlaskForm):
+    phone_number = StringField('Phone Number', validators=[DataRequired()])
+
+class ResolvedSearchForm(FlaskForm):
+    resolved = StringField('Resolved', validators=[DataRequired()])
+
+class NameSearchForm(FlaskForm):
+    customer_name = StringField('Customer Name', validators=[DataRequired()])
+
+class ResponseSearchForm(FlaskForm):
+    response = StringField('Resonse', validators=[DataRequired()])
+
+
 
