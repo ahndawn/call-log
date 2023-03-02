@@ -21,16 +21,22 @@ class CallForm(FlaskForm):
     resolved = SelectField("Resolved", choices=[('yes'), ('no')])
 
 class PhoneSearchForm(FlaskForm):
-    phone_number = StringField('Phone Number', validators=[DataRequired()])
+    phone_number = StringField('PHONE NUMBER:', validators=[DataRequired()])
 
 class ResolvedSearchForm(FlaskForm):
-    resolved = StringField('Resolved', validators=[DataRequired()])
+    resolved = SelectField('RESOLVED:', choices=[('no'),('yes')], validators=[DataRequired()])
 
 class NameSearchForm(FlaskForm):
-    customer_name = StringField('Customer Name', validators=[DataRequired()])
+    customer_name = StringField('CUSTOMER NAME:', validators=[DataRequired()])
 
 class ResponseSearchForm(FlaskForm):
-    response = StringField('Resonse', validators=[DataRequired()])
+    response = SelectField('RESPONSE:', choices=[('no'),('yes')], validators=[DataRequired()])
+
+class CommunitySearchForm(FlaskForm):
+    community = StringField('COMMUNITY:', validators=[DataRequired()])
+
+class AreaSearchForm(FlaskForm):
+    area = StringField('AREA:', validators=[DataRequired()])
 
 
 

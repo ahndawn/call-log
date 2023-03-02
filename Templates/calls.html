@@ -3,7 +3,7 @@
 {% block content %}
 
   <h1>Call Log</h1>
-
+  <br>
   <form method="post">
     {{ form.csrf_token }}
   <table class="table">
@@ -14,20 +14,20 @@
         <th>Customer Name
           <a href="{{ url_for('name_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
         </th>
-        <th>Phone Number<a href="{{ url_for('phone_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <th>Phone Number <a href="{{ url_for('phone_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
         </th>
-        <th>Community</th>
-        <th>Area</th>
+        <th>Community <a href="{{ url_for('community_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
+        <th>Area <a href="{{ url_for('area_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Address</th>
         <th>Customer Type</th>
         <th>Call Type</th>
         <th>Comments</th>
         <th>Received Type</th>
-        <th>Response<a href="{{ url_for('response_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <th>Response <a href="{{ url_for('response_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
         </th>
         <th>Card</th>
         <th>Database</th>
-        <th>Resolved<a href="{{ url_for('resolved_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <th>Resolved <a href="{{ url_for('resolved_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
         </th>
         <th>Actions</th>
       </tr>
@@ -52,7 +52,7 @@
             <td><input type="text" name="resolved_{{ call.id }}" size="3" id="table-inputs" value="{{ call.resolved }}"></td>
 
             <td class="actions"><a href="{{ url_for('edit_call', id=call.id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
-            <a href="{{ url_for('delete_call', id=call.id) }}" id="back" class="btn btn-sm btn-primary" onclick="return confirmDelete()"><i class="fa-solid fa-xmark"></i></a></td>
+            <a href="{{ url_for('delete_call', id=call.id) }}" id="deletebtn" class="btn btn-sm btn-primary" onclick="return confirmDelete()"><i class="fa-solid fa-trash-can"></i></a></td>
         </tr>
       {% endfor %}
         <tr>

@@ -1,23 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+<br>
     <h1>Customer Search</h1>
 <div class="search-area">
+    <img src="{{ url_for('static', filename='assets/icons/person.png') }}" alt="person logo" width="180" height="130">
+<br>
     <form method="post" action="{{ url_for('name_search') }}">
         {{ form.csrf_token }}
         <div class="form-group">
-            <div id="search-box">{{ form.customer_name.label }}</div>
+            {{ form.customer_name.label }}
+            <div id="search-box">{{ form.customer_name(class="form-control") }}</div>
             <br>
-            {{ form.customer_name(class="form-control") }}<button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            <button type="submit" id="searchbtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             {% for error in form.customer_name.errors %}
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
         </div>
-        <br>
-        
-        <a href="/calls" id="backbtn" class="btn btn-link"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
-</div>
     <br>
+    <a href="/calls" id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
+</div>
+
     {% if calls %}
         <table class="table">
             <thead>

@@ -2,7 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 from models import db, connect_db, Call
-from forms import CallForm, PhoneSearchForm, ResponseSearchForm, ResolvedSearchForm, NameSearchForm
+from forms import CallForm, PhoneSearchForm, ResponseSearchForm, ResolvedSearchForm, NameSearchForm, CommunitySearchForm, AreaSearchForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///calls.db'
@@ -102,7 +102,6 @@ def call(id=None):
         call.card = request.form['card']
         call.database = request.form['database']
         call.resolved = request.form['resolved']
-        call.booked = request.form['booked']
 
         db.session.add(call)
         db.session.commit()
@@ -149,6 +148,24 @@ def name_search():
         customer_name = form.customer_name.data
         calls = Call.query.filter(Call.customer_name.like(f'%{customer_name}%')).all()
     return render_template('name_search.html', form=form, calls=calls)
+
+@app.route('/community_search', methods=['GET', 'POST'])
+def community_search():
+    form = CommunitySearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        community = form.community.data
+        calls = Call.query.filter(Call.community.like(f'%{community}%')).all()
+    return render_template('community_search.html', form=form, calls=calls)
+
+@app.route('/area_search', methods=['GET', 'POST'])
+def area_search():
+    form = AreaSearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        area = form.area.data
+        calls = Call.query.filter(Call.area.like(f'%{area}%')).all()
+    return render_template('area_search.html', form=form, calls=calls)
 ##########################
 
 

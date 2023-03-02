@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Response Search</h1>
+<br>
+    <h1>Area Search</h1>
 <div class="search-area">
-    <img src="{{ url_for('static', filename='assets/icons/clipboard.png') }}" alt="cliboard logo" width="300" height="180">
+    <img src="{{ url_for('static', filename='assets/icons/home.png') }}" alt="home logo" width="180" height="130">
     <br>
-    <form method="post" action="{{ url_for('response_search') }}">
+    <form method="post" action="{{ url_for('area_search') }}">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.response.label }}{{ form.response(class="form-control") }}
+            {{ form.area.label }}
+            <div id="search-box">{{ form.area(class="form-control") }}</div>
             <br>
-            <button type="submit"  id="searchbtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
-            {% for error in form.response.errors %}
+            <button type="submit" id="searchbtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            {% for error in form.area.errors %}
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
         </div>
-        <br>
-        
-        <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
+    <br>
+    <a href="/calls" id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
 </div>
     {% if calls %}
         <table class="table">
@@ -60,7 +61,8 @@
                         <td class="search-table">{{ call.database }}</td>
                         <td class="search-table">{{ call.resolved }}</td>
                         <td class="actions"><a href="{{ url_for('edit_call', id=call.id) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="{{ url_for('delete_call', id=call.id) }}"  id="back" onclick="return confirmDelete()" class="btn btn-sm btn-primary">Delete</a></td>
+                            <a href="{{ url_for('delete_call', id=call.id) }}"  id="back" onclick="return confirmDelete()" class="btn btn-sm btn-primary">Delete</a>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

@@ -2,11 +2,14 @@
 {% block content %}
     <h1>Resolved Calls</h1>
 <div class="search-area">
+    <img src="{{ url_for('static', filename='assets/icons/clipboard.png') }}" alt="cliboard logo" width="300" height="180">
+    <br>
     <form method="post" action="{{ url_for('resolved_search') }}">
         {{ form.csrf_token }}
         <div class="form-group">
-            {{ form.resolved.label }}
-            {{ form.resolved(class="form-control") }}<button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            {{ form.resolved.label }}{{ form.resolved(class="form-control") }}
+            <br>
+            <button type="submit"  id="searchbtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             {% for error in form.resolved.errors %}
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
@@ -16,7 +19,6 @@
         <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
 </div>
-    <br>
     {% if calls %}
         <table class="table">
             <thead>
