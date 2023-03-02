@@ -2,7 +2,7 @@ from flask import Flask, flash, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 from models import db, connect_db, Call
-from forms import CallForm
+from forms import CallForm, PhoneSearchForm, ResponseSearchForm, ResolvedSearchForm, NameSearchForm
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///calls.db'
@@ -43,8 +43,7 @@ def calls():
                     response=form.response.data,
                     card=form.card.data,
                     database=form.database.data,
-                    resolved=form.resolved.data,
-                    booked=form.booked.data)
+                    resolved=form.resolved.data)
         db.session.add(call)
         db.session.commit()
         return redirect(url_for('calls'))
@@ -71,14 +70,13 @@ def edit_call(id):
                     response=form.response.data,
                     card=form.card.data,
                     database=form.database.data,
-                    resolved=form.resolved.data,
-                    booked=form.booked.data)
+                    resolved=form.resolved.data)
         edited_call=call
         db.session.add(edited_call)
         db.session.commit()
         flash('Call updated successfully', 'success')
         return redirect(url_for('calls'))
-    return render_template('calls.html', call=call, form=form)
+    return render_template('call.html', call=call, form=form)
 
 @app.route('/call', methods=['GET', 'POST'])
 @app.route('/call/<int:id>', methods=['GET', 'POST'])
@@ -112,3 +110,56 @@ def call(id=None):
         return redirect(url_for('calls'))
 
     return render_template('call.html', call=call)
+
+######################
+# Search routes
+
+@app.route('/response_search', methods=['GET', 'POST'])
+def response_search():
+    form = ResponseSearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        response = form.response.data
+        calls = Call.query.filter(Call.response.like(f'%{response}%')).all()
+    return render_template('response_search.html', form=form, calls=calls)
+
+@app.route('/phone_search', methods=['GET', 'POST'])
+def phone_search():
+    form = PhoneSearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        phone_number = form.phone_number.data
+        calls = Call.query.filter(Call.phone_number.like(f'%{phone_number}%')).all()
+    return render_template('phone_search.html', form=form, calls=calls)
+
+@app.route('/resolved_search', methods=['GET', 'POST'])
+def resolved_search():
+    form = ResolvedSearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        resolved = form.resolved.data
+        calls = Call.query.filter(Call.resolved.like(f'%{resolved}%')).all()
+    return render_template('resolved_search.html', form=form, calls=calls)
+
+@app.route('/name_search', methods=['GET', 'POST'])
+def name_search():
+    form = NameSearchForm(request.form)
+    calls = []
+    if request.method == 'POST' and form.validate():
+        customer_name = form.customer_name.data
+        calls = Call.query.filter(Call.customer_name.like(f'%{customer_name}%')).all()
+    return render_template('name_search.html', form=form, calls=calls)
+##########################
+
+
+@app.route('/calls/delete/<int:id>')
+def delete_call(id):
+    # retrieve the call from the database using the id parameter
+    call = Call.query.get_or_404(id)
+
+    # delete the call from the database
+    db.session.delete(call)
+    db.session.commit()
+
+    # redirect to the calls page
+    return redirect('/calls')

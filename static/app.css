@@ -1,41 +1,78 @@
+html {
+  font-family: 'Montserrat', sans-serif;
+  
+}
+
 a {
   text-decoration: none;
 }
 
+
+br {
+  padding: 20%;
+}
+
+.form-control {
+  box-sizing: content-box;
+}
+
 .search-area {
   text-align: center;
+  padding: 15%;
+}
+
+#search{
+  background-color: transparent;
+  color: black;
+  font-size: 12px;
+  padding: 0%;
+}
+
+#search:hover {
+  background-color: transparent;
+  color: rgb(110, 109, 109);
+  font-size: 12px;
+  padding: 0%;
+}
+
+button {
+  border: 1px solid black;
+  color: black;
+  background-color: transparent;
+  font-size: 12px;
+  box-shadow: #444343 2px 2px;
+}
+
+button:hover{
+  border: 1px solid black;
+  color: green;
+  background-color: transparent;
+  font-size: 12px;
+  box-shadow: #333 3px 3px;
 }
 
 .btn {
   border: none;
   outline: none;
   color: black;
-  background-color: lightskyblue;
-  border-radius: 5px;
-  padding: 7px;
+  background-color: transparent;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
 }
 
 .btn:hover {
-  cursor: pointer;
-  border: #333;
-  outline: #333;
-  background-color: rgb(14, 132, 205);
-}
-
-button {
   border: none;
-  outline: none;
-  color: black;
-  background-color: lightskyblue;
-  border-radius: 5px;
-  padding: 7px;
-}
-
-button:hover {
   cursor: pointer;
-  border: #333;
-  outline: #333;
-  background-color: rgb(14, 132, 205);
+  color: darkgrey;
+  background-color: transparent;
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 17px;
 }
 
 h1 {
@@ -75,12 +112,12 @@ h1 {
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; /* Important for vertical align on mobile phones */
+  margin: 0; 
 }
 
-/* Add a red background color to navbar links on hover */
+
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: lightskyblue;
 }
 
 /* Dropdown content (hidden by default) */
@@ -103,7 +140,6 @@ h1 {
   text-align: left;
 }
 
-/* Add a grey background color to dropdown links on hover */
 .dropdown-content a:hover {
   background-color: #ddd;
 }
@@ -113,11 +149,28 @@ h1 {
   display: block;
 }
 
-table, th, td {
+
+/* .actions {
+  border: .5px solid black;
+} */
+
+.table, th, td {
   border: 1px solid black;
   text-align: center;
+  padding: 0%;
+}
+
+#table-inputs {
+ outline: none;
+ border: none;
+ text-align: center;
 }
 
 thead {
-  background-color: lightskyblue;
+  background: linear-gradient(to bottom, white, lightskyblue);
+}
+
+.search-table {
+  /* border: .5px solid black; */
+  text-align: center;
 }

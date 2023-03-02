@@ -4,16 +4,17 @@
 <div class="search-area">
     <form method="post" action="{{ url_for('name_search') }}">
         {{ form.csrf_token }}
-        <div class="form-group" id="search-box">
-            {{ form.customer_name.label }}
-            {{ form.customer_name(class="form-control") }}<button type="submit" class="btn btn-primary">Search</button>
+        <div class="form-group">
+            <div id="search-box">{{ form.customer_name.label }}</div>
+            <br>
+            {{ form.customer_name(class="form-control") }}<button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             {% for error in form.customer_name.errors %}
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
         </div>
         <br>
         
-        <a href="/calls" id="backbtn" class="btn btn-sm btn-primary"> Go back</a>
+        <a href="/calls" id="backbtn" class="btn btn-link"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
 </div>
     <br>
