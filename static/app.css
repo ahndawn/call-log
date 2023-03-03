@@ -1,8 +1,8 @@
-html {
+body {
   font-family: 'Montserrat', sans-serif;
   justify-content: center;
 }
-
+ 
 a {
   text-decoration: none;
 }
@@ -171,6 +171,7 @@ thead {
   background: linear-gradient(to bottom, white, lightskyblue);
   text-align: center;
   vertical-align: middle;
+  font-weight: bolder;
 }
 
 #deletebtn:hover {
