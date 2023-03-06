@@ -56,59 +56,39 @@ def edit_call(id):
     form = CallForm(obj=call)
     if form.validate_on_submit():
         form.populate_obj(call)
-        edited_call = Call(date=form.date.data, 
-                    time=form.time.data,
-                    customer_name=form.customer_name.data,
-                    phone_number=form.phone_number.data,
-                    community=form.community.data,
-                    area=form.area.data,
-                    address=form.address.data,
-                    customer_type=form.customer_type.data,
-                    call_type=form.call_type.data,
-                    comments=form.comments.data,
-                    received_type=form.received_type.data,
-                    response=form.response.data,
-                    card=form.card.data,
-                    database=form.database.data,
-                    resolved=form.resolved.data)
-        edited_call=call
-        db.session.add(edited_call)
+        # edited_call = Call(date=form.date.data, 
+        #             time=form.time.data,
+        #             customer_name=form.customer_name.data,
+        #             phone_number=form.phone_number.data,
+        #             community=form.community.data,
+        #             area=form.area.data,
+        #             address=form.address.data,
+        #             customer_type=form.customer_type.data,
+        #             call_type=form.call_type.data,
+        #             comments=form.comments.data,
+        #             received_type=form.received_type.data,
+        #             response=form.response.data,
+        #             card=form.card.data,
+        #             database=form.database.data,
+        #             resolved=form.resolved.data)
+        # edited_call=call
+        # db.session.add(edited_call)
         db.session.commit()
         flash('Call updated successfully', 'success')
         return redirect(url_for('calls'))
     return render_template('call.html', call=call, form=form)
 
-@app.route('/call', methods=['GET', 'POST'])
-@app.route('/call/<int:id>', methods=['GET', 'POST'])
-def call(id=None):
-    if id:
-        call = Call.query.get_or_404(id)
-    else:
-        call = Call()
+@app.route('/calls/delete/<int:id>')
+def delete_call(id):
+    # retrieve the call from the database using the id parameter
+    call = Call.query.get_or_404(id)
 
-    if request.method == 'POST':
-        call.date = request.form['date']
-        call.time = request.form['time']
-        call.customer_name = request.form['customer_name']
-        call.phone_number = request.form['phone_number']
-        call.community = request.form['community']
-        call.area = request.form['area']
-        call.address = request.form['address']
-        call.customer_type = request.form['customer_type']
-        call.call_type = request.form['call_type']
-        call.comments = request.form['comments']
-        call.received_type = request.form['received_type']
-        call.response = request.form['response']
-        call.card = request.form['card']
-        call.database = request.form['database']
-        call.resolved = request.form['resolved']
+    # delete the call from the database
+    db.session.delete(call)
+    db.session.commit()
 
-        db.session.add(call)
-        db.session.commit()
-
-        return redirect(url_for('calls'))
-
-    return render_template('call.html', call=call)
+    # redirect to the calls page
+    return redirect('/calls')
 
 ######################
 # Search routes
@@ -167,16 +147,3 @@ def area_search():
         calls = Call.query.filter(Call.area.like(f'%{area}%')).all()
     return render_template('area_search.html', form=form, calls=calls)
 ##########################
-
-
-@app.route('/calls/delete/<int:id>')
-def delete_call(id):
-    # retrieve the call from the database using the id parameter
-    call = Call.query.get_or_404(id)
-
-    # delete the call from the database
-    db.session.delete(call)
-    db.session.commit()
-
-    # redirect to the calls page
-    return redirect('/calls')

@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Phone Number Search</h1>
+
 <div class="search-area">
+    <h1>Phone Number Search</h1>
     <img src="{{ url_for('static', filename='assets/icons/phone.png') }}" alt="phone logo" width="150" height="130">
     <br>
     <form method="post" action="{{ url_for('phone_search') }}">
@@ -9,17 +10,16 @@
         <div class="form-group">
             {{ form.phone_number.label }}
             {{ form.phone_number(class="form-control") }}
-            <br>
             <button type="submit"  id="searchbtn" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
             {% for error in form.phone_number.errors %}
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
         </div>
-        <br>
-        
-        <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
+    <br>
+    <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
 </div>
+<br>
     {% if calls %}
         <table class="table">
             <thead>

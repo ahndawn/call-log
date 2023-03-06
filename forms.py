@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, DateField, TimeField, FloatField, SelectField, PasswordField, SubmitField, EmailField, TextAreaField, FieldList, FormField, IntegerField, DateField, TimeField, BooleanField
-from wtforms.validators import InputRequired, length, optional, email, DataRequired
+from wtforms.validators import InputRequired, length, optional, email, DataRequired, Email
 from datetime import datetime
 
 class CallForm(FlaskForm):
@@ -39,4 +39,16 @@ class AreaSearchForm(FlaskForm):
     area = StringField('AREA:', validators=[DataRequired()])
 
 
-
+class CustomerForm(FlaskForm):
+    last_name = StringField('Last Name', validators=[DataRequired()])
+    first_name = StringField('First Name', validators=[DataRequired()])
+    phone_number = StringField('Phone Number', validators=[DataRequired()])
+    email_address = StringField('Email Address', validators=[DataRequired(), Email()])
+    notes = TextAreaField('Notes')
+    address1 = StringField('Address 1', validators=[DataRequired()])
+    address2 = StringField('Address 2')
+    community = StringField('Community', validators=[DataRequired()])
+    area = StringField('Area', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
+    zip_code = StringField('Zip Code', validators=[DataRequired()])

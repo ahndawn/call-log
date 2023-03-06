@@ -1,7 +1,4 @@
-body {
-  font-family: 'Montserrat', sans-serif;
-  justify-content: center;
-}
+
  
 a {
   text-decoration: none;
@@ -11,30 +8,28 @@ br {
   padding: 20%;
 }
 
-.form-control {
-  box-sizing: content-box;
-}
-
 .search-area {
   text-align: center;
-  padding: 15%;
 }
 
+
+/* search magnifying glass button on calls table */
 #search{
   background-color: transparent;
+  border: none;
   color: black;
   font-size: 12px;
   padding: 0%;
 }
 
+/* search magnifying glass button on calls table*/
 #search:hover {
   background-color: transparent;
   color: rgb(110, 109, 109);
-  font-size: 12px;
-  padding: 0%;
 }
 
-button {
+/* save button */
+#save-btn {
   border: 1px solid black;
   color: black;
   background-color: transparent;
@@ -42,7 +37,8 @@ button {
   box-shadow: #444343 2px 2px;
 }
 
-button:hover{
+/* save button */
+#save-btn:hover{
   border: 1px solid black;
   color: green;
   background-color: transparent;
@@ -50,9 +46,9 @@ button:hover{
   box-shadow: #333 3px 3px;
 }
 
-.btn {
+/* edit pencil button on calls table */
+#edit-btn {
   border: none;
-  outline: none;
   color: black;
   background-color: transparent;
   padding-right: 5px;
@@ -61,8 +57,7 @@ button:hover{
   padding-bottom: 5px;
   font-size: 12px;
 }
-
-.btn:hover {
+#edit-btn:hover {
   border: none;
   cursor: pointer;
   color: darkgrey;
@@ -74,6 +69,57 @@ button:hover{
   font-size: 17px;
 }
 
+/* trashcan button on calls table */
+#deletebtn{
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+#deletebtn:hover {
+  color: red;
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 17px;
+  }
+
+/* back button for search templates */
+#backbtn {
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+#backbtn:hover {
+  color: rgb(181, 5, 5);
+}
+
+/* search button for search templates */
+#searchbtn {
+  border: none;
+  background: linear-gradient(to bottom, white, lightskyblue);
+  font-size: 14px;
+  color: black;
+  box-shadow: #333 3px 3px;
+}
+#searchbtn:hover {
+  background: linear-gradient(to top, white, lightskyblue);
+  font-size: 14px;
+  color: #444343;
+  box-shadow: #333 5px 5px;
+}
+
+/* search area for search templates */
+.search-table {
+  text-align: center;
+}
+
+
 h1 {
   text-align: center;
   font-size: 45px;
@@ -82,6 +128,7 @@ h1 {
 
 /* Navbar container */
 .navbar {
+  margin: 0 auto;
   overflow: hidden;
   background-color: #333;
   font-family: Arial;
@@ -97,68 +144,17 @@ h1 {
   text-decoration: none;
 }
 
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-/* Dropdown button */
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color: white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit; /* Important for vertical align on mobile phones */
-  margin: 0; 
-}
-
-
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover {
   background-color: lightskyblue;
 }
 
-/* Dropdown content (hidden by default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-
-/* .actions {
-  border: .5px solid black;
-} */
 
 .table, th, td {
   border: 1px solid black;
   text-align: center;
   padding: 0%;
   vertical-align: middle;
+  table-layout: auto;
 }
 
 #table-inputs {
@@ -174,19 +170,6 @@ thead {
   font-weight: bolder;
 }
 
-#deletebtn:hover {
-color: red;
-}
-
-#searchbtn {
-  background: linear-gradient(to bottom, white, lightskyblue);
-}
-
-.search-table {
-  /* border: .5px solid black; */
-  text-align: center;
-}
-
 img {
   display: block;
   margin: 0 auto;
@@ -199,4 +182,5 @@ img {
   justify-content: center;
   display: block;
   margin: 0 auto;
+  box-sizing: content-box;
 }

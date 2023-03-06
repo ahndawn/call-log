@@ -11,11 +11,8 @@
       <tr>
         <th>Date</th>
         <th>Time</th>
-        <th>Customer Name
-          <a href="{{ url_for('name_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </th>
-        <th>Phone Number <a href="{{ url_for('phone_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </th>
+        <th>Customer Name <a href="{{ url_for('name_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
+        <th>Phone Number <a href="{{ url_for('phone_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Community <a href="{{ url_for('community_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Area <a href="{{ url_for('area_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Address</th>
@@ -23,12 +20,10 @@
         <th>Call Type</th>
         <th>Comments</th>
         <th>Received Type</th>
-        <th>Response <a href="{{ url_for('response_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </th>
+        <th>Response <a href="{{ url_for('response_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Card</th>
         <th>Database</th>
-        <th>Resolved <a href="{{ url_for('resolved_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
-        </th>
+        <th>Resolved <a href="{{ url_for('resolved_search') }}" class="btn btn-sm btn-primary" id="search"><i class="fa-solid fa-magnifying-glass"></i></a></th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -38,7 +33,7 @@
             <td><input type="date" name="date_{{ call.id }}" size="10" id="table-inputs" value="{{ call.date }}"></td>
             <td><input type="time" name="time_{{ call.id }}" size="8" id="table-inputs" value="{{ call.time }}"></td>
             <td><input type="text" name="customer-name_{{ call.id }}" size="18" id="table-inputs" value="{{ call.customer_name }}"></td>
-            <td><input type="text" oninput="formatPhoneNumber()" name="phone_number_{{ call.id }}" size="13" id="table-inputs" value="{{ call.phone_number }}"></td>
+            <td><input type="text" name="phone_number_{{ call.id }}" size="13" id="table-inputs" value="{{ call.phone_number }}"></td>
             <td><input type="text" name="community_{{ call.id }}" size="15" id="table-inputs" value="{{ call.community }}"></td>
             <td><input type="text" name="area_{{ call.id }}" size="12" id="table-inputs" value="{{ call.area }}"></td>
             <td><input type="text" name="address_{{ call.id }}" size="20" id="table-inputs" value="{{ call.address }}"></td>
@@ -51,7 +46,7 @@
             <td><input type="text" name="database_{{ call.id }}" size="3" id="table-inputs" value="{{ call.database }}"></td>
             <td><input type="text" name="resolved_{{ call.id }}" size="3" id="table-inputs" value="{{ call.resolved }}"></td>
 
-            <td class="actions"><a href="{{ url_for('edit_call', id=call.id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
+            <td class="actions"><a href="{{ url_for('edit_call', id=call.id) }}" id="edit-btn" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></a>
             <a href="{{ url_for('delete_call', id=call.id) }}" id="deletebtn" class="btn btn-sm btn-primary" onclick="return confirmDelete()"><i class="fa-solid fa-trash-can"></i></a></td>
         </tr>
       {% endfor %}
@@ -59,7 +54,7 @@
           <td>{{ form.date }}</td>
           <td>{{ form.time }}</td>
           <td>{{ form.customer_name }}</td>
-          <td class="phone_column">{{ form.phone_number }}</td>
+          <td>{{ form.phone_number }}</td>
           <td>{{ form.community }}</td>
           <td>{{ form.area }}</td>
           <td>{{ form.address }}</td>
@@ -71,7 +66,7 @@
           <td>{{ form.card }}</td>
           <td>{{ form.database }}</td>
           <td>{{ form.resolved }}</td>
-          <td><button type="submit"><i class="fa-solid fa-floppy-disk"></i> Save</button></td>
+          <td><button type="submit" id="save-btn"><i class="fa-solid fa-floppy-disk"></i> Save</button></td>
         </tr>
     </tbody>
   </table>

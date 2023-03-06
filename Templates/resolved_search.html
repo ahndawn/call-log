@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h1>Resolved Calls</h1>
+
 <div class="search-area">
+    <h1>Resolved Calls</h1>
     <img src="{{ url_for('static', filename='assets/icons/clipboard.png') }}" alt="cliboard logo" width="300" height="180">
     <br>
     <form method="post" action="{{ url_for('resolved_search') }}">
@@ -14,11 +15,11 @@
                 <span class="text-danger">{{ error }}</span>
             {% endfor %}
         </div>
-        <br>
-        
-        <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
+    <br>
+    <a href="/calls"  id="backbtn" class="btn btn-sm btn-primary"><i class="fa-solid fa-arrow-left"></i> Go back</a>
 </div>
+<br>
     {% if calls %}
         <table class="table">
             <thead>
