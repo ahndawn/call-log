@@ -1,0 +1,386 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+.newcustform {
+  text-align: center;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+ body {
+  font-family: 'Prompt', sans-serif;
+ }
+
+a {
+  text-decoration: none;
+}
+
+br {
+  padding: 20%;
+}
+
+.search-area {
+  text-align: center;
+}
+
+
+/* search magnifying glass button on calls table */
+#search{
+  background-color: transparent;
+  border: none;
+  color: black;
+  font-size: 12px;
+  padding: 0%;
+}
+
+/* search magnifying glass button on calls table*/
+#search:hover {
+  background-color: transparent;
+  color: rgb(110, 109, 109);
+}
+
+/* save button */
+#save-btn {
+  border: 1px solid black;
+  color: black;
+  background-color: transparent;
+  font-size: 12px;
+  box-shadow: #444343 2px 2px;
+}
+
+/* save button */
+#save-btn:hover{
+  border: 1px solid black;
+  color: green;
+  background-color: transparent;
+  font-size: 12px;
+  box-shadow: #333 3px 3px;
+}
+
+/* edit pencil button on calls table */
+#edit-btn {
+  border: none;
+  color: black;
+  background-color: transparent;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+#edit-btn:hover {
+  border: none;
+  cursor: pointer;
+  color: darkgrey;
+  background-color: transparent;
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 17px;
+}
+
+/* trashcan button on calls table */
+#deletebtn{
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 12px;
+}
+#deletebtn:hover {
+  color: red;
+  padding-right: 2.5px;
+  padding-left: 2.5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 17px;
+  }
+
+/* back button for search templates */
+#backbtn {
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+#backbtn:hover {
+  color: rgb(181, 5, 5);
+}
+
+/* search button for search templates */
+#searchbtn {
+  border: none;
+  background: linear-gradient(to bottom, white, lightskyblue);
+  font-size: 14px;
+  color: black;
+  box-shadow: #333 3px 3px;
+}
+#searchbtn:hover {
+  background: linear-gradient(to top, white, lightskyblue);
+  font-size: 14px;
+  color: #444343;
+  box-shadow: #333 5px 5px;
+}
+
+/* search area for search templates */
+.search-table {
+  text-align: center;
+}
+
+
+h1 {
+  text-align: center;
+  font-size: 45px;
+  padding-top: 5%;
+}
+
+/* Navbar container */
+.navbar {
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: lightskyblue;
+}
+
+
+.table, th, td {
+  border: 1px solid black;
+  text-align: center;
+  padding: 0%;
+  vertical-align: middle;
+  table-layout: auto;
+}
+
+#table-inputs {
+ outline: none;
+ border: none;
+ text-align: center;
+}
+
+thead {
+  background: linear-gradient(to bottom, white, lightskyblue);
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bolder;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+}
+
+.form-control {
+  font-size: 16px;
+  text-align: center;
+  max-width: fit-content;
+  justify-content: center;
+  display: block;
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+
+/* new customer table  */
+.new_cust_table{  
+  table-layout: auto;
+}
+
+</style>
+
+    <h1 style="text-align: center;">New Customer</h1>
+    <hr>
+    <form action="" method="POST" id="new_customer_form" class="newcustform" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.customer_info.form.hidden_tag() }}
+        {% set customer = form.customer_info %}
+        <div class="row" id="customer_and_contact_info">
+            <div class="column mx-auto" id="customer_info" style="max-width: 50%;">
+                <div class="text-center bg-primary" style="min-width: 390px;padding-top: 1px; background: linear-gradient(to top, white, lightskyblue);">
+                    <h2 style="padding-bottom: 5px;">Customer Info</h2>
+                    <hr style="margin: 0;">
+                </div>
+                <table class="newcustform" style="min-width: 390px; text-align: center;">
+                    <tr>
+                        <th class="text-center" style="border: none;">Last Name</th>
+                        <th class="text-center" style="border: none;">First Name</th>
+                    </tr>
+                    {% if form.customer_info.last_name.errors %}
+                        <tr>
+                            <td class="text-center" style="border: none;color: red"><b>{{ form.customer_info.last_name.errors[0] }}</b></td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td class="text-center" style="border: none;">
+                            {{ customer.form.last_name }}
+                        </td>
+                        <td class="text-center" style="border: none;">{{ customer.form.first_name }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" style="border: none;">{{ customer.form.last_name2 }}</td>
+                        <td class="text-center" style="border: none;">{{ customer.form.first_name2 }}</td>
+                    </tr>
+                    <tr>
+                        <th class="text-center" style="border: none;">Referral</th>
+                        <th class="text-center" style="border: none;">Customer Since</th>
+                    </tr>
+                    {% if form.customer_info.customer_since.errors %}
+                        <tr>
+                            <td style="border: none;"></td>
+                            <td class="text-center" style="border: none;color: red;"><b>{{ form.customer_info.customer_since.errors[0] }}</b></td>
+                        </tr>
+                    {% endif %}
+                    <tr>
+                        <td class="text-center" style="border: none;">{{ customer.form.referral }}</td>
+                        <td class="text-center" style="border: none;">{{ customer.form.customer_since }}</td>
+                    </tr>
+                    <tr>
+                        <td style="border: none;padding-bottom: 10px;"></td>
+                    </tr>
+                </table>
+            </div>
+                <div class="row" id="phone_info">
+                    <div class="column mx-auto" style="max-width: 50%">
+                        <div class="text-center bg-primary" style="min-width: 390px;padding-top: 1px; background: linear-gradient(to top, white, lightskyblue);">
+                            <h2 style="padding-bottom: 5px;">Phone Numbers
+                            </h2>
+                            <hr style="margin: 0;">
+                        </div>
+                        <div id="new_phone_fieldset" class="newcustform">
+                            {% include '_new_customer_phone_field.html' %}
+                        </div>
+                    </div>
+                </div>
+<br>
+                <div class="row" id="email_info">
+                    <div class="column mx-auto" style="max-width: 50%">
+                        <div class="text-center bg-primary" style="min-width: 390px;padding-top: 1px; background: linear-gradient(to top, white, lightskyblue);">
+                            <h2 style="padding-bottom: 5px;">Emails
+                            </h2>
+                            <hr style="margin: 0;">
+                        </div>
+                        <div id="new_email_fieldset" class="newcustform">
+                            {% include '_new_customer_email_field.html' %}
+                        </div>
+                    </div>
+                </div>
+        </div>
+<br>
+        <div class="row" id="address_info">
+            <div class="column mx-auto" style="max-width: 50%">
+                <div class="text-center bg-primary" style="min-width: 390px;padding-top: 1px; background: linear-gradient(to top, white, lightskyblue); text-align: center;">
+                    <h2 style="padding-bottom: 5px;">Addresses
+                    </h2>
+                    <hr style="margin: 0;">
+                </div>
+                <div id="new_address_fieldset" class="newcustform">
+                    {% include '_new_customer_address_field.html' %}
+                </div>
+            </div>
+        </div>
+<hr>
+        {{ form.submit_new_customer(class="btn btn-primary form-control") }}
+    </form>
+    <div style="padding-top: 50px;"></div>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script>
+        $("#add_num").click(function (){
+
+            $.ajax({
+                type: 'GET',
+                url: '/new_cust_number',
+                data: $("#new_customer_form").serialize(),
+                success: function(response){
+                    console.log("success");
+                    $("#new_phone_fieldset").html(response);
+                    {#$("#edit_contact_modal").load("customers.html #edit_contact_modal");#}
+                }
+            });
+        });
+    </script>
+    <script>
+        $("#add_email").click(function (){
+
+            $.ajax({
+                type: 'GET',
+                url: '/new_cust_email',
+                data: $("#new_customer_form").serialize(),
+                success: function(response){
+                    console.log("success");
+                    $("#new_email_fieldset").html(response);
+                    {#$("#edit_contact_modal").load("customers.html #edit_contact_modal");#}
+                }
+            });
+        });
+    </script>
+    <script>
+
+        $(document).on('click', '#add_address', function(){
+
+            $.ajax({
+                type: 'GET',
+                url: '/new_cust_address',
+                data: $("#new_customer_form").serialize(),
+                success: function(response){
+                    console.log("success");
+                    $("#new_address_fieldset").html(response);
+                    {#$("#edit_contact_modal").load("customers.html #edit_contact_modal");#}
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).on('change',"#community_selector", function (){
+
+            $.ajax({
+                type: 'GET',
+                url: '/new_cust_community',
+                data: $("#new_customer_form").serialize(),
+                success: function(response){
+                    console.log("success");
+                    $("#new_address_fieldset").html(response);
+                    {#$(document).load("#change_sub_communities")#}
+                    {#$("#edit_contact_modal").load("customers.html #edit_contact_modal");#}
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).on('change',"#sub_community_selector", function (){
+
+            $.ajax({
+                type: 'GET',
+                url: '/new_cust_community',
+                data: $("#new_customer_form").serialize(),
+                success: function(response){
+                    console.log("success");
+                    $("#new_address_fieldset").html(response);
+                    {#$(document).load("#change_sub_communities")#}
+                    {#$("#edit_contact_modal").load("customers.html #edit_contact_modal");#}
+                }
+            });
+        });
+    </script>
+{% endblock %}
