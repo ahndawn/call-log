@@ -31,3 +31,10 @@ function formatPhoneNumber() {
       phoneNumber.value = formattedPhoneNumber;
     }
   }
+
+// scrolls to bottom of call table
+  function scrollToBottom() {
+    var table = document.getElementById("table");
+    var lastRow = table.rows[table.rows.length -1];
+    lastRow.scrollIntoView({behavior: 'smooth'});
+}

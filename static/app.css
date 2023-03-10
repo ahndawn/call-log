@@ -4,6 +4,23 @@ form {
 
 h1 {
   font-family: 'Ubuntu', sans-serif;
+  text-decoration: underline;
+  text-decoration-color: lightskyblue;
+  text-decoration-thickness: 0.3em;
+  text-underline-offset: -0.15em ;
+  text-decoration-skip-ink: none;
+  text-align: center;
+  font-size: 3.5vw;
+  padding-top: 5%;
+}
+
+.call-log-head {
+  position: fixed;
+}
+
+h2 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 2vw;
 }
 
  body {
@@ -130,12 +147,6 @@ br {
 }
 
 
-h1 {
-  text-align: center;
-  font-size: 45px;
-  padding-top: 5%;
-}
-
 /* Navbar container */
 .navbar {
   margin: 0 auto;
@@ -158,13 +169,43 @@ h1 {
   background-color: lightskyblue;
 }
 
-
-.table, th, td {
+/* call table  */
+.tableFixHead {
+  overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
+  height: 50vw; /* gives an initial height to the table */
   border: 1px solid black;
+}
+
+/* keeps table head in fixed position when scrolling */
+.tableFixHead thead th {
+  position: sticky; /* make the table heads sticky */
+  top: 0px; /* table head will be placed from the top of the table and sticks to it */
+  border: 1px solid black;
+}
+
+/* scrolls to bottom of call log */
+#scrollarrow {
+  color: black;
+  text-shadow: white 1px 1px;
+  background-color: transparent;
+  font-size: 13px;
+  border: none;
+}
+
+#scrollarrow:hover {
+  cursor: pointer;
+  color: white;
+  text-shadow: #333 1px 1px;
+}
+
+table, td, th {
+  border: 1px solid black;
+  border-collapse: collapse; /* make the table borders collapse to each other */
   text-align: center;
   padding: 0%;
   vertical-align: middle;
   table-layout: auto;
+  width: 100%;
 }
 
 #table-inputs {
@@ -178,6 +219,8 @@ thead {
   text-align: center;
   vertical-align: middle;
   font-weight: bolder;
+  position: sticky;
+  top: 0;
 }
 
 img {

@@ -9,17 +9,18 @@ class CallForm(FlaskForm):
     customer_name = StringField("Customer Name", validators=[DataRequired()])
     phone_number = StringField("Phone Number", validators=[DataRequired()])
     community = StringField("Community")
-    area = SelectField("Area", choices=[(''), ('north'), ('northwest'), ('northeast'), ('central-west'), ('central'), ('central-east'), ('southeast'), ('south'), ('southwest'), ('ocean')])
+    area = SelectField("Area", choices=[(''), ('north'), ('northwest'), ('northeast'), ('central-west'), ('central'), ('central-east'), ('southeast'), ('south'), ('southwest'), ('ocean north'), ('ocean'), ('ocean south')])
     address = StringField("Address", validators=[DataRequired()])
-    customer_type = SelectField("Customer Type", choices=[('existing'),('new')], validators=[DataRequired()])
-    call_type = SelectField("Call Type", choices=[('schedule'),('complaint'), ('payment'), ('estimate')], validators=[DataRequired()])
+    customer_type = SelectField("Customer Type", choices=[('existing'),('new'), ('?')], validators=[DataRequired()])
+    call_type = SelectField("Call Type", choices=[('schedule'),('complaint'), ('payment'), ('estimate'), ('call out'), ('?')], validators=[DataRequired()])
     comments = StringField("Comments", validators=[DataRequired()])
-    received_type = SelectField("Received Type", choices=[('msg'), ('call'), ('rollover')],validators=[DataRequired()])
+    received_type = SelectField("Received Type", choices=[('msg'), ('call'), ('RO')],validators=[DataRequired()])
     response = SelectField("Response", choices=[('yes'), ('no')])
     card = SelectField("Card", choices=[('yes'), ('no')])
     database = SelectField("Database", choices=[('yes'), ('no')])
     resolved = SelectField("Resolved", choices=[('yes'), ('no')])
 
+# Search Forms
 class PhoneSearchForm(FlaskForm):
     phone_number = StringField('PHONE NUMBER:', validators=[DataRequired()])
 
@@ -39,4 +40,4 @@ class AreaSearchForm(FlaskForm):
     area = StringField('AREA:', validators=[DataRequired()])
 
 class TypeSearchForm(FlaskForm):
-    call_type = SelectField('CALL TYPE:', choices=[('schedule'),('complaint'), ('payment'), ('estimate')], validators=[DataRequired()])
+    call_type = SelectField('CALL TYPE:', choices=[('schedule'),('complaint'), ('payment'), ('estimate'), ('call out')], validators=[DataRequired()])
