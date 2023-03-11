@@ -44,15 +44,16 @@ br {
 #search{
   background-color: transparent;
   border: none;
-  color: black;
+  color: rgba(0, 82, 182, 0.748);
   font-size: 12px;
   padding: 0%;
+  text-shadow: black 1px 1px;
 }
 
 /* search magnifying glass button on calls table*/
 #search:hover {
   background-color: transparent;
-  color: rgb(110, 109, 109);
+  color: white;
 }
 
 /* save button */
@@ -171,9 +172,10 @@ br {
 
 /* call table  */
 .tableFixHead {
-  overflow-y: auto; /* make the table scrollable if height is more than 200 px  */
-  height: 50vw; /* gives an initial height to the table */
-  border: 1px solid black;
+  overflow: scroll; /* make the table scrollable if height is more than 200 px  */
+  height: 400px; /* gives an initial height to the table */
+  border-top: 1px solid black;
+  padding-bottom: 10px;
 }
 
 /* keeps table head in fixed position when scrolling */
@@ -194,25 +196,46 @@ br {
 
 #scrollarrow:hover {
   cursor: pointer;
-  color: white;
+  color: lightskyblue;
   text-shadow: #333 1px 1px;
 }
 
+/* calls table */
 table, td, th {
   border: 1px solid black;
   border-collapse: collapse; /* make the table borders collapse to each other */
   text-align: center;
-  padding: 0%;
+  padding-left: 0%;
   vertical-align: middle;
   table-layout: auto;
   width: 100%;
 }
 
+/* edit call table */
+.table{
+  overflow: auto; /* make the table scrollable  */
+}
+
+/* table input areas */
 #table-inputs {
  outline: none;
  border: none;
  text-align: center;
 }
+
+/* change color based on status of table cell */
+.status {
+  color: #fff; /* Set text color to white for better visibility */
+}
+
+.status:contains("yes") {
+  background-color: rgb(182, 255, 182);
+}
+
+.status:contains("no") {
+  background-color: rgb(255, 190, 190);
+}
+
 
 thead {
   background: linear-gradient(to bottom, white, lightskyblue);

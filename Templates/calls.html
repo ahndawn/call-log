@@ -3,6 +3,7 @@
 {% block content %}
   <h1>Call Log</h1>
   <br>
+  <button type="button" id="scrollarrow" style="padding-left: 2%;" onclick="scrollToRight()"> Scroll to right <i class="fa-solid fa-arrow-right-long"></i></button>
   <form method="post">
     {{ form.csrf_token }}
   <div class="tableFixHead">
@@ -74,5 +75,5 @@
   </table>
 </div>
 </form>
-<br>
+<img src="/static/assets/images/bluewave.png" alt="blue-wave.png" width="100%" height="100px">
 {% endblock %}
