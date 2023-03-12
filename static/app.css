@@ -39,6 +39,16 @@ br {
   text-align: center;
 }
 
+/* call data table */
+.call-data{
+  background-color: rgb(176, 225, 255);
+  font-family: 'Ubuntu', sans-serif;
+  width: 100px;
+  height: fit-content;
+  border: none;
+  font-size: 12px;
+  text-shadow: white 1px 1px;
+}
 
 /* search magnifying glass button on calls table */
 #search{
@@ -85,6 +95,7 @@ br {
   padding-bottom: 5px;
   font-size: 12px;
 }
+
 #edit-btn:hover {
   border: none;
   cursor: pointer;
@@ -222,20 +233,6 @@ table, td, th {
  border: none;
  text-align: center;
 }
-
-/* change color based on status of table cell */
-.status {
-  color: #fff; /* Set text color to white for better visibility */
-}
-
-.status:contains("yes") {
-  background-color: rgb(182, 255, 182);
-}
-
-.status:contains("no") {
-  background-color: rgb(255, 190, 190);
-}
-
 
 thead {
   background: linear-gradient(to bottom, white, lightskyblue);

@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 from models import db, connect_db, Call
 from forms import CallForm, PhoneSearchForm, ResponseSearchForm, ResolvedSearchForm, NameSearchForm, CommunitySearchForm, AreaSearchForm, TypeSearchForm
+from queries import count_unresolved_calls, count_response_calls
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///calls.db'
@@ -28,6 +29,8 @@ def home():
 @app.route('/calls', methods=["GET", "POST"])
 def calls():
     form = CallForm()
+    count_unresolved = count_unresolved_calls()
+    count_response = count_response_calls()
     if request.method == "POST" and form.validate():
         call = Call(date=form.date.data, 
                     time=form.time.data,
@@ -48,7 +51,7 @@ def calls():
         db.session.commit()
         return redirect(url_for('calls'))
     calls = Call.query.all()
-    return render_template('calls.html', form=form, calls=calls)
+    return render_template('calls.html', form=form, calls=calls, count_unresolved=count_unresolved, count_response=count_response)
 
 @app.route('/edit-call/<int:id>', methods=['GET', 'POST'])
 def edit_call(id):
@@ -138,3 +141,4 @@ def area_search():
         calls = Call.query.filter(Call.area.like(f'%{area}%')).all()
     return render_template('area_search.html', form=form, calls=calls)
 ##########################
+

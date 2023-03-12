@@ -12,38 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/2157f639ef.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="static/app.css">
- 
-
-<script>
- function scrollToRight() {
-  // Get the table element by its ID
-  const table = document.getElementById("table");
-
-  // Get the last cell in the last row of the table
-  const lastCell = table.rows[table.rows.length - 1].cells[table.rows[table.rows.length - 1].cells.length - 1];
-
-  // Calculate the offset of the last cell from the left edge of the table
-  const offset = lastCell.offsetLeft + lastCell.offsetWidth;
-
-  // Scroll the table to the calculated offset
-  table.parentElement.scrollLeft = offset;
-  }
-
-  function scrollToLeft() {
-  // Get the table element by its ID
-  const table = document.getElementById("table");
-
-  // Get the first cell in the first row of the table
-  const firstCell = table.rows[0].cells[0];
-
-  // Calculate the offset of the first cell from the left edge of the table
-  const offset = firstCell.offsetLeft;
-
-  // Scroll the table to the calculated offset
-  table.parentElement.scrollLeft = offset;
-  }
-</script>
+    <script src="/static/scripts/scripts.js"></script>
 <style>
 h1 {
   font-family: 'Ubuntu', sans-serif;
