@@ -175,25 +175,42 @@ img {
         <td><input type="text" name="area_{{ call.id }}" value="{{ call.area }}"></td>
         <td><input type="text" name="address_{{ call.id }}" value="{{ call.address }}"></td>
         <td><input type="text" name="customer_type_{{ call.id }}" value="{{ call.customer_type }}"></td>
-        <td><input type="text" name="call_type_{{ call.id }}" value="{{ call.call_type }}"></td>
+        <td><select type="text" name="received_type_{{ call.id }}" value="{{ call.received_type }}">
+              <option value="{{ call.call_type }}">{{ call.call_type }}</option>
+              <option>------</option>
+              <option value="schedule">schedule</option>
+              <option value="complaint">complaint</option>
+              <option value="payment">payment</option>
+              <option value="estimate">estimate</option>
+              <option value="callout">callout</option>
+            </select>
+        </td>
         <td><input type="text" name="comments_{{ call.id }}" value="{{ call.comments }}"></td>
         <td><input type="text" name="received_type_{{ call.id }}" value="{{ call.received_type }}">
         <td><select name="response">
+            <option value="{{ call.response }}">{{ call.response }}</option>
+            <option>------</option>
             <option value="yes">yes</option>
             <option value="no">no</option>
           </select>
         </td>
         <td><select name="card">
+              <option value="{{ call.card }}">{{ call.card }}</option>
+              <option>------</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>
         </td>
         <td><select name="database">
+              <option value="{{ call.database }}">{{ call.database }}</option>
+              <option>------</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>
         </td>
         <td><select name="resolved">
+              <option value="{{ call.resolved }}">{{ call.resolved }}</option>
+              <option>------</option>
               <option value="yes">yes</option>
               <option value="no">no</option>
             </select>

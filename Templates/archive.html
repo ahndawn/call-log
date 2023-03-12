@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<button type="submit" id="backbtn" style="padding: 1%; font-size: 18px; font-family: 'Ubuntu', sans-serif;"><a href="/calls" style="color: black;"><i class="fa-solid fa-arrow-left"></i> Go back</a></button>
+<h1>Archive Calls</h1>
+<br>
+<form action="{{ url_for('archive_calls') }}" method="post">
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date">
+  
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date">
+  
+    <button type="submit" id="archivebtn" class="btn btn-sm btn-primary">Archive Calls <i class="fa-solid fa-box-archive"></i></button>
+  </form>
+  <br>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+    <p style="text-align: center; color: darkblue;">{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+{% endblock %}

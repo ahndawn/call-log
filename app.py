@@ -1,9 +1,11 @@
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for, Response, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, date, time
 from models import db, connect_db, Call
 from forms import CallForm, PhoneSearchForm, ResponseSearchForm, ResolvedSearchForm, NameSearchForm, CommunitySearchForm, AreaSearchForm, TypeSearchForm
-from queries import count_unresolved_calls, count_response_calls
+from queries import count_unresolved_calls, count_response_calls, count_calls
+import csv
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///calls.db'
@@ -31,6 +33,7 @@ def calls():
     form = CallForm()
     count_unresolved = count_unresolved_calls()
     count_response = count_response_calls()
+    count_call = count_calls()
     if request.method == "POST" and form.validate():
         call = Call(date=form.date.data, 
                     time=form.time.data,
@@ -51,7 +54,7 @@ def calls():
         db.session.commit()
         return redirect(url_for('calls'))
     calls = Call.query.all()
-    return render_template('calls.html', form=form, calls=calls, count_unresolved=count_unresolved, count_response=count_response)
+    return render_template('calls.html', form=form, calls=calls, count_unresolved=count_unresolved, count_response=count_response, count_call=count_call)
 
 @app.route('/edit-call/<int:id>', methods=['GET', 'POST'])
 def edit_call(id):
@@ -60,7 +63,6 @@ def edit_call(id):
     if form.validate_on_submit():
         form.populate_obj(call)
         db.session.commit()
-        flash('Call updated successfully', 'success')
         return redirect(url_for('calls'))
     return render_template('call.html', call=call, form=form)
 
@@ -140,5 +142,38 @@ def area_search():
         area = form.area.data
         calls = Call.query.filter(Call.area.like(f'%{area}%')).all()
     return render_template('area_search.html', form=form, calls=calls)
-##########################
 
+
+##########################
+# archive calls to csv file
+@app.route("/archive_calls", methods=["GET", "POST"])
+def archive_calls():
+    if request.method == 'POST':
+        start_date = datetime.strptime(request.form['start_date'], '%Y-%m-%d')
+        end_date = datetime.strptime(request.form['end_date'], '%Y-%m-%d')
+        calls = Call.query.filter(Call.date.between(start_date, end_date)).all()
+
+        if not calls:
+            flash('No calls found in selected date range.')
+            return redirect(url_for('archive_calls'))
+
+        archive_dir = os.path.join(app.root_path, 'archive')
+        if not os.path.exists(archive_dir):
+            os.makedirs(archive_dir)
+
+        archive_filename = f'calls_{start_date.strftime("%Y-%m-%d")}_to_{end_date.strftime("%Y-%m-%d")}.csv'
+        archive_path = os.path.join(archive_dir, archive_filename)
+
+        with open(archive_path, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['Date', 'Time', 'Customer Name', 'Phone Number', 'Community', 'Area', 'Address', 'Customer Type', 'Call Type', 'Comments', 'Received Type', 'Response', 'Card', 'Database', 'Resolved'])
+            for call in calls:
+                writer.writerow([call.date.strftime('%Y-%m-%d'), call.time.strftime('%H:%M:%S'), call.customer_name, call.phone_number, call.community, call.area, call.address, call.customer_type, call.call_type, call.comments, call.received_type, call.response, call.card, call.database, call.resolved])
+
+        Call.query.filter(Call.date.between(start_date, end_date)).delete()
+        db.session.commit()
+
+        flash(f'Calls successfully archived and removed. Archive file: {archive_filename}', 'success')
+        return redirect(url_for('archive_calls'))
+
+    return render_template('archive.html')

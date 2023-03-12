@@ -39,9 +39,13 @@ br {
   text-align: center;
 }
 
-/* call data table */
+/* status bar table */
+.status-bar{
+  border: none;
+}
+
 .call-data{
-  background-color: rgb(176, 225, 255);
+  background-color: lightskyblue;
   font-family: 'Ubuntu', sans-serif;
   width: 100px;
   height: fit-content;
@@ -106,6 +110,20 @@ br {
   padding-top: 0px;
   padding-bottom: 0px;
   font-size: 17px;
+}
+
+/* Archive button */
+#archivebtn {
+  background: linear-gradient(to top, white, rgb(156, 217, 255));
+  border: none;
+  color: black;
+  font-family: 'Ubuntu', sans-serif;
+  box-shadow: #333 2px 2px;
+}
+#archivebtn:hover {
+  background: linear-gradient(to bottom, white, rgb(156, 217, 255));
+  cursor: pointer;
+  box-shadow: #333 3px 3px;
 }
 
 /* trashcan button on calls table */
@@ -186,7 +204,7 @@ br {
   overflow: scroll; /* make the table scrollable if height is more than 200 px  */
   height: 400px; /* gives an initial height to the table */
   border-top: 1px solid black;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 /* keeps table head in fixed position when scrolling */
