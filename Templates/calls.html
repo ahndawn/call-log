@@ -49,25 +49,25 @@
             <td><input type="text" name="received_type_{{ call.id }}" size="3" id="table-inputs" value="{{ call.received_type }}"></td>
             
             {% if call.response == "no" %}
-            <td style="background-color: rgb(255, 208, 215);">{{ call.response }}</td>
+            <td style="background-color: rgb(255, 96, 96); font-weight: 300;">{{ call.response }}</td>
             {% else %}
             <td>{{ call.response }}</td>
             {% endif %}
 
             {% if call.card == "no" %}
-            <td style="background-color: rgb(255, 208, 215);">{{ call.card }}</td>
+            <td style="background-color: rgb(255, 96, 96); font-weight: 300;">{{ call.card }}</td>
             {% else %}
             <td>{{ call.card }}</td>
             {% endif %}
 
             {% if call.database == "no" %}
-            <td style="background-color: rgb(255, 208, 215);">{{ call.database }}</td>
+            <td style="background-color: rgb(255, 96, 96); font-weight: 300;">{{ call.database }}</td>
             {% else %}
             <td>{{ call.database }}</td>
             {% endif %}
 
             {% if call.resolved == "no" %}
-            <td style="background-color: rgb(255, 208, 215);">{{ call.resolved }}</td>
+            <td style="background-color: rgb(255, 96, 96); font-weight: 300;">{{ call.resolved }}</td>
             {% else %}
             <td>{{ call.resolved }}</td>
             {% endif %}
