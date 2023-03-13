@@ -5,13 +5,14 @@ form {
 h1 {
   font-family: 'Ubuntu', sans-serif;
   text-decoration: underline;
-  text-decoration-color: lightskyblue;
+  text-decoration-color: rgb(179, 225, 253);
   text-decoration-thickness: 0.3em;
-  text-underline-offset: -0.15em ;
+  text-underline-offset: -0.13em ;
   text-decoration-skip-ink: none;
   text-align: center;
   font-size: 3.5vw;
   padding-top: 5%;
+  padding-bottom: 2.5%;
 }
 
 .call-log-head {
@@ -41,17 +42,16 @@ br {
 
 /* status bar table */
 .status-bar{
-  border: none;
+  border-bottom: .5px solid black;
 }
 
 .call-data{
-  background-color: lightskyblue;
+  background-color: rgb(179, 225, 253);
   font-family: 'Ubuntu', sans-serif;
   width: 100px;
   height: fit-content;
   border: none;
   font-size: 12px;
-  text-shadow: white 1px 1px;
 }
 
 /* search magnifying glass button on calls table */
